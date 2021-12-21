@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_521f635a64de4b04839dccc464a05094 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_c8f2187e0922455f98b98da703eb74fe }}
+        registry: https://smartconnectionsensores.azurewebsites.net/
+        username: ${{ secrets.AzureAppService_ContainerUsername_053fdba8277244acb33b2ba5d3ce47e3 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_0cf31803917049bbb3262ab0d5a425d4 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_521f635a64de4b04839dccc464a05094 }}/appsvc/staticsite:${{ github.sha }}
+        tags: smartconnectionsensores.azurewebsites.net/${{ secrets.AzureAppService_ContainerUsername_053fdba8277244acb33b2ba5d3ce47e3 }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'smartconnectionsensores'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a4562b67fc4d41f5b5cbc4672e834d59 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_521f635a64de4b04839dccc464a05094 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_94a3e5c85a244457ba415ed611047fa8 }}
+        images: 'smartconnectionsensores.azurewebsites.net/${{ secrets.AzureAppService_ContainerUsername_053fdba8277244acb33b2ba5d3ce47e3 }}/appsvc/staticsite:${{ github.sha }}'
