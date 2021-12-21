@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://smartconnectionsensores.azurewebsites.net/
-        username: ${{ secrets.AzureAppService_ContainerUsername_0274b665ebb74f2381f01a671a6806b8 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_01352f0da36d44a4a0d5dcab56940ca9 }}
+        registry: https://github.com/diegoamva/smartconneciontprod3.git/
+        username: ${{ secrets.AzureAppService_ContainerUsername_bd86a5bc50c242e9b3dc7f0a85036160 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_02907ec9b2c64d6c97b469868f885010 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: smartconnectionsensores.azurewebsites.net/${{ secrets.AzureAppService_ContainerUsername_0274b665ebb74f2381f01a671a6806b8 }}/diegoamva/smartconneciontprod3/tree/masterhttps:${{ github.sha }}
+        tags: github.com/diegoamva/smartconneciontprod3.git/${{ secrets.AzureAppService_ContainerUsername_bd86a5bc50c242e9b3dc7f0a85036160 }}/grafica:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'smartconnectionsensores'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e9b04318612543438f55c9165d9f0da6 }}
-        images: 'smartconnectionsensores.azurewebsites.net/${{ secrets.AzureAppService_ContainerUsername_0274b665ebb74f2381f01a671a6806b8 }}/diegoamva/smartconneciontprod3/tree/masterhttps:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d0c34d1fe1d241069636e07e02f1217b }}
+        images: 'github.com/diegoamva/smartconneciontprod3.git/${{ secrets.AzureAppService_ContainerUsername_bd86a5bc50c242e9b3dc7f0a85036160 }}/grafica:${{ github.sha }}'
